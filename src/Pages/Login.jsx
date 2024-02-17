@@ -1,8 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import AxiosService from "../Routes/AxiosService";
+import ApiRoutes from "../Routes/AxiosRoutes";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [isChecked, setIsChecked] = useState(true);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const formProps = Object.fromEntries(formData);
+      const res = await AxiosService.post(
+        `${ApiRoutes.SIGN_IN.path}`,
+        formProps
+      );
+      if (res.status === 200) {
+        toast.success(res.data.message);
+        sessionStorage.setItem('token',res.data.token)
+        navigate('/')
+      }
+      else{
+        toast.error(error.response.data.message || error.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || error.message);
+    }
+  };
+
+
   return (
     <>
       <section className="account-section bg_img">
@@ -12,26 +40,28 @@ function Login() {
               <div className="section-header-3">
                 <h2 className="title">Login</h2>
               </div>
-              <form className="account-form">
+              <form className="account-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label for="email2">
+                  <label htmlFor="email2">
                     Email<span>*</span>
                   </label>
                   <input
                     type="text"
                     placeholder="Enter Your Email"
                     id="email2"
+                    name="email"
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <label for="pass3">
+                  <label htmlFor="pass3">
                     Password<span>*</span>
                   </label>
                   <input
                     type="password"
                     placeholder="Password"
                     id="pass3"
+                    name="password"
                     required
                   />
                 </div>
@@ -49,7 +79,7 @@ function Login() {
                   </Link>
                 </div>
                 <div className="form-group text-center">
-                  <input type="submit" value="log in" />
+                  <button className="button-id" type="submit">Log In</button>
                 </div>
               </form>
               <div className="option">
