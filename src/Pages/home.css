@@ -1,0 +1,11 @@
+.slider-container{
+    background-color: #01061a;
+}
+.movie_content {
+    color: rgba(255, 255, 255, 0.909);
+  }
+
+  .total{
+    height : auto;
+    width: 100%;
+  }

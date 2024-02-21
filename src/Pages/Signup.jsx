@@ -4,7 +4,7 @@ import AxiosService from "../Routes/AxiosService";
 import ApiRoutes from "../Routes/AxiosRoutes";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+import "./Login.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Signup() {
       );
       if (res.status === 200) {
         toast.success(res.data.message);
-        navigate('/login')
+        navigate("/login");
       }
     } catch (error) {
       toast.error("Enter All Field");
@@ -28,87 +28,71 @@ function Signup() {
 
   return (
     <>
-      <section className="account-section bg_img">
+      <section className="ftco-section">
         <div className="container">
-          <div className="padding-top padding-bottom">
-            <div className="account-area">
-              <div className="section-header-3">
-                {/* <span className="cate">welcome</span> */}
-                <h2 className="title">Sign Up </h2>
-              </div>
-              <form className="account-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name">
-                    Name<span>*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter Your Name"
-                    id="name"
-                    name= "name"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email1">
-                    Email<span>*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter Your Email"
-                    name= "email"
-                    id="email1"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="mobile">
-                    Mobile<span>*</span>
-                  </label>
-                  <input type="text" placeholder="Phone"  name= "phone" id="phone" required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="pass1">
-                    Password<span>*</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                   
-                    name= "password"
-                    required
-                  />
-                </div>
+          <div className="row justify-content-center">
+            <div className="col-md-6 text-center mb-1">
+              <h2 className="heading-section">Sign Up</h2>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-md-6 col-lg-5">
+              <div className="login-wrap p-4 p-md-5">
+                <form onSubmit={handleSubmit} className="login-form">
+                  <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="text"
+                      placeholder="Enter Your Name"
+                      name="name"
+                      className="form-control rounded-left"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="Email Address">Email</label>
+                    <input
+                      type="text"
+                      placeholder="Enter Your Email"
+                      name="email"
+                      className="form-control rounded-left"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="Mobile">Mobile</label>
+                    <input
+                      type="text"
+                      placeholder="Mobile Number"
+                      name="phone"
+                      className="form-control rounded-left"
+                      required
+                    />
+                  </div>
+                  <label htmlFor="Email Address">Password</label>
+                  <div className="form-group d-flex">
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      className="form-control rounded-left"
+                      required
+                    />
+                  </div>
 
-                {/* <div className="form-group checkgroup">
-                            <input type="checkbox" id="bal" required checked/>
-                            <label for="bal">I agree to the <a href="#0">Terms, Privacy Policy</a> and <a href="#0">Fees</a></label>
-                        </div> */}
-                <div className="form-group text-center">
-                  <button className="button-id" type="submit">Sign Up</button>
-                </div>
-              </form>
-              <div className="option">
+                  <div className="form-group">
+                    <button
+                      type="submit"
+                      className="btn btn-danger rounded submit p-3 px-5"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div className="text-center p-5">
                 Already have an account? <Link to="/login">Login</Link>
               </div>
-
-              {/* <ul className="social-icons">
-                        <li>
-                            <a href="#0">
-                                <i className="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#0" className="active">
-                                <i className="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#0">
-                                <i className="fab fa-google"></i>
-                            </a>
-                        </li>
-                    </ul> */}
             </div>
           </div>
         </div>

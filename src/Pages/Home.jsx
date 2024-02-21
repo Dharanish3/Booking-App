@@ -1,30 +1,49 @@
 import React from "react";
+import "./home.css";
+import { movieData } from "./Data";
 import Layout from "./Layout";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import MovieCard from "./MovieCard";
 
 function Home() {
+  const settings = {
+    className: "",
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    adaptiveHeight: true,
+  };
   return (
     <>
       <Layout>
-        <section className="banner-section">
-          <div
-            className="banner-bg bg_img bg-fixed"
-            data-background="assets/images/banner/banner01.jpg"
-          ></div>
-          <div className="container">
-            <div className="banner-content">
-              <h1 className="title  cd-headline clip">
-                <span className="d-block">book your</span> tickets for
-                <span className="color-theme cd-words-wrapper p-0 m-0">
-                  <b className="is-visible">Movie</b>
-                </span>
-              </h1>
-              <p>
-                Safe, secure, reliable ticketing.Your ticket to live
-                entertainment!
-              </p>
-            </div>
-          </div>
-        </section>
+        <div className="slider-container">
+          <Slider className="bg-black" {...settings}>
+            {movieData.map((item, id) => (
+              <>
+                <div className="row" key={id}>
+                  <div className="col-md-4 col-lg-4 d-flex align-items-center">
+                    <div className="movie_content p-5">
+                      <h3>{item.title}</h3>
+                      <div className="description">
+                        <p>{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-8 col-lg-8  ">
+                    <img src={item.image} className="image-fluid total" />
+                  </div>
+                </div>
+              </>
+            ))}
+          </Slider>
+        </div>
+
+        <MovieCard />
       </Layout>
     </>
   );

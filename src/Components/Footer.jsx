@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
     const date = new Date().getFullYear()
@@ -8,9 +9,9 @@ function Footer() {
         <div className="container">
           <div className="footer-top">
             <div className="logo">
-              <a href="index-1.html">
-                <img src="assets/images/footer/footer-logo.png" alt="footer" />
-              </a>
+              <Link to='/'>
+                <img src="/assets/images/footer/footer-logo.png" alt="footer" />
+              </Link>
             </div>
             <ul className="social-icons">
               <li>

@@ -1,42 +1,62 @@
 import React from "react";
-import { Link , useLocation} from "react-router-dom";
+import "./header.css";
+import { Link, useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import { useNavigate } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+
+import { useLogout } from "./useLogout";
 
 function Header() {
-    const location = useLocation()
-    console.log(location)
-    
+  const location = useLocation();
+  const navigate = useNavigate();
+  const logout = useLogout();
+
+  const isLoggedIn = sessionStorage.getItem('token') ;
   return (
     <>
-      <header className="header-section">
-        <div className="container">
-          <div className="header-wrapper">
-            <div className="logo">
-              <a href="index.html">
-                <img src="assets/images/logo/logo.png" alt="logo" />
-              </a>
-            </div>
-            <ul className="menu">
-              <li>
-                <Link to="/" className={location.pathname === '/' ? "active" : ''} >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/forgot" className={location.pathname === '/forgot' ? "active" : ''}>movies</Link>
-              </li>
-
-              <li className="header-button pr-0">
-                <Link to="/login">Sign Up / Log In </Link>
-              </li>
-            </ul>
-            <div className="header-bar d-lg-none">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navbar expand="lg" className="bg-body-dark custom-navbar">
+        <Container>
+          <Navbar.Brand as={Link} to="/" id="color">
+            TICKETS 🎟️ BUY
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mx-auto">
+              {" "}
+              {/* Use mx-auto to center Nav.Link elements */}
+              <Nav.Link
+                as={Link}
+                to="/"
+                className={location.pathname === "/" ? "active" : ""}
+                id="color"
+              >
+                Home
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/login"
+                className={location.pathname === "/login" ? "active" : ""}
+                id="color"
+              >
+                Movies
+              </Nav.Link>
+              {/* Add more Nav.Link elements as needed */}
+            </Nav>
+          </Navbar.Collapse>
+          {isLoggedIn ? (
+            <Button variant="danger" onClick={() => logout()}>
+              Logout
+            </Button>
+          ) : (
+            <Button variant="danger" onClick={() => navigate("/login")}>
+              Signup / Login
+            </Button>
+          )}
+        </Container>
+      </Navbar>
     </>
   );
 }

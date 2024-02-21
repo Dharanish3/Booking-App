@@ -4,6 +4,7 @@ import AxiosService from "../Routes/AxiosService";
 import ApiRoutes from "../Routes/AxiosRoutes";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
   const [isChecked, setIsChecked] = useState(true);
@@ -19,10 +20,9 @@ function Login() {
       );
       if (res.status === 200) {
         toast.success(res.data.message);
-        sessionStorage.setItem('token',res.data.token)
-        navigate('/')
-      }
-      else{
+        sessionStorage.setItem("token", res.data.token);
+        navigate("/");
+      } else {
         toast.error(error.response.data.message || error.message);
       }
     } catch (error) {
@@ -30,83 +30,72 @@ function Login() {
     }
   };
 
-
   return (
     <>
-      <section className="account-section bg_img">
+      <section className="ftco-section">
         <div className="container">
-          <div className="padding-top padding-bottom">
-            <div className="account-area">
-              <div className="section-header-3">
-                <h2 className="title">Login</h2>
+          <div className="row justify-content-center">
+            <div className="col-md-6 text-center mb-1">
+              <h2 className="heading-section">Login</h2>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-md-6 col-lg-5">
+              <div className="login-wrap p-4 p-md-5">
+                <form onSubmit={handleSubmit} className="login-form">
+                  <div className="form-group">
+                    <label htmlFor="Email Address">Email</label>
+                    <input
+                      type="text"
+                      placeholder="Enter Your Email"
+                      name="email"
+                      className="form-control rounded-left"
+                      required
+                    />
+                  </div>
+                  <label htmlFor="Email Address">Password</label>
+                  <div className="form-group d-flex">
+                  
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      className="form-control rounded-left"
+                      required
+                    />
+                  </div>
+                  <div className="form-group d-md-flex">
+                    <div className="w-50">
+                      <label className="checkbox-wrap checkbox-primary">
+                        Remember Me
+                        <input type="checkbox"  checked={isChecked}
+                    onChange={() => setIsChecked(!isChecked)} />
+                        <span className="checkmark"></span>
+                      </label>
+                    </div>
+                    <div className="w-50 text-md-right">
+                      <a href="#">Forgot Password</a>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <button
+                      type="submit"
+                      className="btn btn-danger rounded submit p-3 px-5"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </form>
+                
               </div>
-              <form className="account-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="email2">
-                    Email<span>*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter Your Email"
-                    id="email2"
-                    name="email"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="pass3">
-                    Password<span>*</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    id="pass3"
-                    name="password"
-                    required
-                  />
-                </div>
-                <div className="form-group checkgroup">
-                  <input
-                    type="checkbox"
-                    id="bal2"
-                    required
-                    checked={isChecked}
-                    onChange={() => setIsChecked(!isChecked)}
-                  />
-                  <label for="bal2">remember password</label>
-                  <Link to="/forgot" className="forget-pass">
-                    Forget Password
-                  </Link>
-                </div>
-                <div className="form-group text-center">
-                  <button className="button-id" type="submit">Log In</button>
-                </div>
-              </form>
-              <div className="option">
+              <div className="text-center p-5">
                 Don't have an account? <Link to="/signup">sign up now</Link>
               </div>
-
-              {/* <ul className="social-icons">
-                <li>
-                  <a href="#0">
-                    <i className="fab fa-facebook-f"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#0">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#0">
-                    <i className="fab fa-google"></i>
-                  </a>
-                </li>
-              </ul> */}
             </div>
           </div>
         </div>
       </section>
+
     </>
   );
 }

@@ -8,10 +8,22 @@ const ApiRoutes = {
     path: "/user/sign-up",
     authenticate: false,
   },
+
   GET_USER: {
     path: "/user/home",
     authenticate: false,
   },
+
+  MOVIE_GET: {
+    path: "/user/movie-list",
+    authenticate: false,
+  },
+
+  MOVIE_GET_NAME: {
+    path: "/user/movie",
+    authenticate: false,
+  },
+
   FORGOT: {
     path: "/forgot-password",
     authenticate: false,
