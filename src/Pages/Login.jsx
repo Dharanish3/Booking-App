@@ -16,11 +16,15 @@ function Login() {
       const formProps = Object.fromEntries(formData);
       const res = await AxiosService.post(
         `${ApiRoutes.SIGN_IN.path}`,
-        formProps
+        formProps,
+        {
+          authenticate: ApiRoutes.SIGN_IN.authenticate,
+        }
       );
       if (res.status === 200) {
         toast.success(res.data.message);
         sessionStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("role", res.data.role);
         navigate("/");
       } else {
         toast.error(error.response.data.message || error.message);
@@ -55,7 +59,6 @@ function Login() {
                   </div>
                   <label htmlFor="Email Address">Password</label>
                   <div className="form-group d-flex">
-                  
                     <input
                       type="password"
                       placeholder="Password"
@@ -68,8 +71,11 @@ function Login() {
                     <div className="w-50">
                       <label className="checkbox-wrap checkbox-primary">
                         Remember Me
-                        <input type="checkbox"  checked={isChecked}
-                    onChange={() => setIsChecked(!isChecked)} />
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => setIsChecked(!isChecked)}
+                        />
                         <span className="checkmark"></span>
                       </label>
                     </div>
@@ -86,7 +92,6 @@ function Login() {
                     </button>
                   </div>
                 </form>
-                
               </div>
               <div className="text-center p-5">
                 Don't have an account? <Link to="/signup">sign up now</Link>
@@ -95,7 +100,6 @@ function Login() {
           </div>
         </div>
       </section>
-
     </>
   );
 }

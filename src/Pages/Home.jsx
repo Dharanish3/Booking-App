@@ -44,6 +44,7 @@ function Home() {
         </div>
 
         <MovieCard />
+        
       </Layout>
     </>
   );

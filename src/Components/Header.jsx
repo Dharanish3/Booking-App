@@ -14,10 +14,10 @@ function Header() {
   const navigate = useNavigate();
   const logout = useLogout();
 
-  const isLoggedIn = sessionStorage.getItem('token') ;
+  const isLoggedIn = sessionStorage.getItem('token') && sessionStorage.getItem('role')  ;
   return (
     <>
-      <Navbar expand="lg" className="bg-body-dark custom-navbar">
+      <Navbar expand="lg" className="bg-body-dark  custom-navbar ">
         <Container>
           <Navbar.Brand as={Link} to="/" id="color">
             TICKETS 🎟️ BUY
@@ -37,8 +37,8 @@ function Header() {
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                to="/login"
-                className={location.pathname === "/login" ? "active" : ""}
+                to="/view-all"
+                className={location.pathname === "/view-all" ? "active" : ""}
                 id="color"
               >
                 Movies

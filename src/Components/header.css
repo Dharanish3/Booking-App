@@ -1,10 +1,10 @@
 .custom-navbar {
-
-    /* background-color: rgb(36, 35, 35);  */
-    background-color: #01061a; 
-    color: #fff; 
-    
-  }
+  background-color: #01061a;
+  color: #fff;
+  position: sticky;
+  top: 0; /* Set the distance from the top where the navbar becomes fixed */
+  z-index: 100; /* Set a z-index to ensure the navbar appears above other elements */
+}
 
   #color{
     color:aliceblue;

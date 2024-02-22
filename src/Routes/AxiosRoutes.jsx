@@ -1,7 +1,7 @@
 const ApiRoutes = {
   SIGN_IN: {
     path: "/user/login",
-    authenticate: false,
+    authenticate: true,
   },
 
   SIGN_UP: {
@@ -28,6 +28,15 @@ const ApiRoutes = {
     path: "/forgot-password",
     authenticate: false,
   },
+
+
+
+
+  // Admin
+  ADMIN_SIGN_IN : {
+    path: "/admin/login",
+    authenticate: false,
+  }
 };
 
 export default ApiRoutes;
