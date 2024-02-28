@@ -19,7 +19,8 @@ function MovieIndex() {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  const [movie, setMovie] = useState();
+  const [movie, setMovie] = useState([]);
+  const [search, setSearch] = useState([]);
 
   //   Get Movie
   const getData = async () => {
@@ -27,10 +28,19 @@ function MovieIndex() {
       const res = await AxiosService.get(`${ApiRoutes.MOVIE_GET.path}`);
       if (res.status === 200) {
         setMovie(res.data.movie);
+        setSearch(res.data.movie);
       }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleChange = (event) => {
+    setSearch(
+      movie.filter((val) =>
+        val.movieName.toLowerCase().includes(event.target.value)
+      )
+    );
   };
 
   //  Delete Movie
@@ -79,15 +89,37 @@ function MovieIndex() {
             </li>
             <li className="breadcrumb-item active">All Movies</li>
           </ol>
-          <Button
-            variant="success"
-            onClick={() => navigate("/admin/movie-create")}
-          >
-            {" "}
-            Add New Movie <i className="fas fa-plus-circle"></i>{" "}
-          </Button>
+          <div className="row" >
+            <div className="col">
+              <div className="input-group input-group-sm p-1">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="inputGroup-sizing-sm">
+                    Search
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  aria-label="Small"
+                  placeholder="search movie"
+                  aria-describedby="inputGroup-sizing-sm"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="col">
+              <Button
+                variant="success"
+                onClick={() => navigate("/admin/movie-create")}
+              >
+                {" "}
+                Add New Movie <i className="fas fa-plus-circle"></i>{" "}
+              </Button>
+            </div>
+          </div>
+
           <br />
-          <br />
+         
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -101,8 +133,8 @@ function MovieIndex() {
               </tr>
             </thead>
             <tbody>
-              {movie &&
-                movie.map((item, i) => (
+              {search.length > 0 ? (
+                search.map((item, i) => (
                   <>
                     <tr key={i}>
                       <td className="text-center">{i + 1}</td>
@@ -113,11 +145,7 @@ function MovieIndex() {
                       <td className="text-center">
                         {" "}
                         <Form>
-                          <Form.Check
-                            type="switch"
-                            id="custom-switch"
-                            
-                          />
+                          <Form.Check type="switch" id="custom-switch" />
                         </Form>
                       </td>
                       <td className="text-center">
@@ -151,7 +179,14 @@ function MovieIndex() {
                       </Modal.Footer>
                     </Modal>
                   </>
-                ))}
+                ))
+              ) : (
+                <tr>
+                  <td className="text-center" colSpan={7}>
+                    No data Found
+                  </td>
+                </tr>
+              )}
             </tbody>
           </Table>
         </div>
