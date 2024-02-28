@@ -35,7 +35,7 @@ function MovieCard() {
     <>
       {location.pathname === "/view-all" ? (
         <Layout>
-        <h3 className="text-center m-4">All Movies</h3>
+          <h3 className="text-center m-4">All Movies</h3>
           <div className="container d-flex justify-content">
             {movie && movie.map((item, id) => <Cards key={id} movie={item} />)}
           </div>
