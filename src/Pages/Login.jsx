@@ -25,6 +25,8 @@ function Login() {
         toast.success(res.data.message);
         sessionStorage.setItem("token", res.data.token);
         sessionStorage.setItem("role", res.data.role);
+        sessionStorage.setItem("userId", res.data._id);
+        sessionStorage.setItem("email", res.data.email);
         navigate("/");
       } else {
         toast.error(error.response.data.message || error.message);

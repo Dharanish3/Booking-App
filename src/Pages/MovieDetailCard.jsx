@@ -28,16 +28,27 @@ function MovieDetailCard({ movie }) {
                   {movie.type}
                 </p>
                 <h5 className="  text-white mb-2">⭐ {movie.ratings}/5</h5>
-                <Button variant="light">{movie.language}</Button> &nbsp; <br />
+                {movie.language.split(",").map((lang, index) => (
+                  <Button key={index} variant="light" className="me-2 mb-2">
+                    {lang.trim()}
+                  </Button>
+                ))}
                 <br />
                 <h6 className="  text-white mb-2">
-                  {movie.running} &nbsp; {movie.formattedReleaseDate}
+                  {movie.running} &nbsp; { new Date(movie.releaseDate).toDateString()}
                 </h6>
                 <br />
                 <div className="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                   <Link
                     className="btn btn-danger btn-lg px-4 me-sm-3"
-                    to="#features"
+                    to={movie.link}
+                    target="blank"
+                  >
+                  <i className="fa-solid fa-play"></i> Watch Trailer
+                  </Link>
+                  <Link
+                    className="btn btn-danger btn-lg px-4 me-sm-3"
+                    to={`/booking/${movie._id}`}
                   >
                     Book Tickets
                   </Link>
@@ -49,7 +60,7 @@ function MovieDetailCard({ movie }) {
                 <Link to={movie.link} target="_blank" rel="noopener noreferrer">
                   <BsFilePlay
                     style={{
-                      color:'black',
+                      color: "black",
                       position: "absolute",
                       top: "50%",
                       left: "50%",

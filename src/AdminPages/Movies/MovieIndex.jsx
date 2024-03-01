@@ -16,9 +16,11 @@ function MovieIndex() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
+  //   Modal
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  //   Movie Search
   const [movie, setMovie] = useState([]);
   const [search, setSearch] = useState([]);
 
@@ -35,6 +37,7 @@ function MovieIndex() {
     }
   };
 
+  //   Search Function
   const handleChange = (event) => {
     setSearch(
       movie.filter((val) =>
@@ -89,7 +92,7 @@ function MovieIndex() {
             </li>
             <li className="breadcrumb-item active">All Movies</li>
           </ol>
-          <div className="row" >
+          <div className="row">
             <div className="col">
               <div className="input-group input-group-sm p-1">
                 <div className="input-group-prepend">
@@ -119,7 +122,7 @@ function MovieIndex() {
           </div>
 
           <br />
-         
+
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -128,7 +131,7 @@ function MovieIndex() {
                 <th className="text-center">Language</th>
                 <th className="text-center">Release Date</th>
                 <th className="text-center">Running Time</th>
-                <th className="text-center">Status</th>
+               
                 <th className="text-center">Action</th>
               </tr>
             </thead>
@@ -140,14 +143,9 @@ function MovieIndex() {
                       <td className="text-center">{i + 1}</td>
                       <td className="text-center"> {item.movieName}</td>
                       <td className="text-center">{item.language}</td>
-                      <td className="text-center">{item.releaseDate}</td>
+                      <td className="text-center">{new Date(item.releaseDate).toDateString()}</td>
                       <td className="text-center">{item.running}</td>
-                      <td className="text-center">
-                        {" "}
-                        <Form>
-                          <Form.Check type="switch" id="custom-switch" />
-                        </Form>
-                      </td>
+                      
                       <td className="text-center">
                         <Link to={`/admin/movie-edit/${item._id}`}>
                           <i
