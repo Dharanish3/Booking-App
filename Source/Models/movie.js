@@ -47,6 +47,7 @@ const movieSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    bookings: [{ type: mongoose.Types.ObjectId, ref: "booking" }],
   },
   {
     collection: "movie",

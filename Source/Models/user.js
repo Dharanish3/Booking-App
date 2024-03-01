@@ -1,6 +1,7 @@
 import mongoose from "./setup.js";
 
 
+
 const validateEmail = function(email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return re.test(email)
@@ -39,7 +40,8 @@ const userSchema = new mongoose.Schema({
     createdAt : {
         type : Date,
         default : Date.now()
-    }
+    },
+    bookings: [{ type: mongoose.Types.ObjectId, ref: "booking" }],
   },{
     collection: "user"
   });

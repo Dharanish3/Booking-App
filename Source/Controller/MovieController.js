@@ -1,6 +1,8 @@
 import MovieModel from "../Models/movie.js";
 import fs from "fs";
 
+
+
 // Get Movie
 const getMovie = async (req, res) => {
   try {
@@ -16,6 +18,8 @@ const getMovie = async (req, res) => {
     });
   }
 };
+
+
 
 // Create Movie
 const createMovie = async (req, res) => {
@@ -71,6 +75,8 @@ const getMovieById = async (req, res) => {
   }
 };
 
+
+
 const getMovieByName = async (req, res) => {
   try {
     const movie = await MovieModel.findOne({ movieName: req.params.movieName });
@@ -91,6 +97,8 @@ const getMovieByName = async (req, res) => {
     });
   }
 };
+
+
 
 // Edit Movie By Id
 const editMovieById = async (req, res) => {
@@ -118,6 +126,9 @@ const editMovieById = async (req, res) => {
   }
 };
 
+
+
+
 // Delete Movie
 const deleteMovie = async (req, res) => {
   try {
@@ -140,6 +151,9 @@ const deleteMovie = async (req, res) => {
     });
   }
 };
+
+
+
 
 export default {
   getMovie,
