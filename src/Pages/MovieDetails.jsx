@@ -11,8 +11,9 @@ function MovieDetails() {
   const getData = async () => {
     try {
       const res = await AxiosService.get(
-        `${ApiRoutes.MOVIE_GET_NAME.path}/${movieName}`
+        `/user/movies/${movieName}`
       );
+     console.log(res)
       if (res.status === 200) {
         setMovie(res.data.movie);
       }

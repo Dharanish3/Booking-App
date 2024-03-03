@@ -13,6 +13,9 @@ import AdminLogin from "../AdminPages/AdminLogin";
 import AdminProtectedRoutes from "./AdminProtectedRoutes";
 import MovieCreate from "../AdminPages/Movies/MovieCreate";
 import MovieIndex from "../AdminPages/Movies/MovieIndex";
+import MovieEdit from "../AdminPages/Movies/MovieEdit";
+import Booking from "../Pages/Booking";
+import UserProtectedRoutes from "./UserProtectedRoutes";
 
 const AppRoutes = [
   // User Routes
@@ -47,6 +50,15 @@ const AppRoutes = [
     name: "Show All Movie",
   },
   {
+    path: "/booking/:_id",
+    element: (
+      <UserProtectedRoutes>
+        <Booking />
+      </UserProtectedRoutes>
+    ),
+    name: "Booking ",
+  },
+  {
     path: "/*",
     element: <Navigate to="/" />,
     name: "Home",
@@ -71,6 +83,11 @@ const AppRoutes = [
   {
     path: "/admin/movieslist",
     element: <MovieIndex />,
+    name: "Movie Index",
+  },
+  {
+    path: "/admin/movie-edit/:_id",
+    element: <MovieEdit />,
     name: "Movie Index",
   },
 ];
