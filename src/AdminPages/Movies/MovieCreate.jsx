@@ -176,6 +176,7 @@ function MovieCreate() {
                   onChange={formik.handleChange}
                   value={formik.values.gallery}
                   type="text"
+                  placeholder="Image Link "
                   name="gallery"
                   
                 />

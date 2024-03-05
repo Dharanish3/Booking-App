@@ -202,6 +202,7 @@ function MovieEdit() {
                   id="formFileLg"
                   type="text"
                   name="gallery"
+                  placeholder="image Link"
                   onChange={formik.handleChange}
                   value={formik.values.gallery}
                 />
@@ -221,6 +222,7 @@ function MovieEdit() {
                       event.currentTarget.files[0]
                     );
                   }}
+                 
                 />
               </div>
               <div className="col-md-4">
