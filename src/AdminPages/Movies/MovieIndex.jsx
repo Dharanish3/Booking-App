@@ -5,7 +5,7 @@ import Topbar from "../Topbar";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { useNavigate , useParams} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AxiosService from "../../Routes/AxiosService";
 import ApiRoutes from "../../Routes/AxiosRoutes";
 import { toast } from "react-toastify";
@@ -15,7 +15,7 @@ import Modal from "react-bootstrap/Modal";
 function MovieIndex() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const params = useParams()
+  
 
   //   Modal
   const handleShowModal = () => setShowModal(true);
