@@ -50,7 +50,7 @@ function MovieIndex() {
   //  Delete Movie
   const deleteMovie = async (id) => {
     try {
-      const {id} = params;
+      
       const res = await AxiosService.delete(
         `${ApiRoutes.MOVIE_DELETE.path}/${id}`
       );
