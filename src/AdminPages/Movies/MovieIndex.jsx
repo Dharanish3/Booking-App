@@ -15,7 +15,6 @@ import Modal from "react-bootstrap/Modal";
 function MovieIndex() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  
 
   //   Modal
   const handleShowModal = () => setShowModal(true);
@@ -50,7 +49,6 @@ function MovieIndex() {
   //  Delete Movie
   const deleteMovie = async (id) => {
     try {
-      
       const res = await AxiosService.delete(
         `${ApiRoutes.MOVIE_DELETE.path}/${id}`
       );
@@ -163,7 +161,7 @@ function MovieIndex() {
                         </Link>
                       </td>
                     </tr>
-                    <Modal show={showModal === item._id} onHide={handleCloseModal}>
+                    <Modal show={showModal} onHide={handleCloseModal}>
                       <Modal.Header closeButton></Modal.Header>
                       <Modal.Body>Are, You Sure Want to delete?</Modal.Body>
                       <Modal.Footer>
