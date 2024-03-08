@@ -156,7 +156,7 @@ function MovieIndex() {
                           ></i>
                         </Link>
                         &nbsp;{" "}
-                        <Link onClick={handleShowModal}>
+                        <Link onClick={()=>handleShowModal(item_id)}>
                           <i className="fas fa-trash" style={{ color: "red" }}>
                             delete
                           </i>
