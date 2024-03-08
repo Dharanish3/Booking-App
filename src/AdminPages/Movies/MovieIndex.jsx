@@ -163,7 +163,7 @@ function MovieIndex() {
                         </Link>
                       </td>
                     </tr>
-                    <Modal show={showModal} onHide={handleCloseModal}>
+                    <Modal show={showModal === item._id} onHide={handleCloseModal}>
                       <Modal.Header closeButton></Modal.Header>
                       <Modal.Body>Are, You Sure Want to delete?</Modal.Body>
                       <Modal.Footer>
