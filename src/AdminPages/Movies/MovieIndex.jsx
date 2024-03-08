@@ -47,10 +47,10 @@ function MovieIndex() {
   };
 
   //  Delete Movie
-  const deleteMovie = async (id) => {
+  const deleteMovie = async (_id) => {
     try {
       const res = await AxiosService.delete(
-        `${ApiRoutes.MOVIE_DELETE.path}/${id}`
+        `${ApiRoutes.MOVIE_DELETE.path}/${_id}`
       );
       if (res.status === 200) {
         toast.success("Movie Deleted Successfully", {
