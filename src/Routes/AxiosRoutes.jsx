@@ -55,7 +55,7 @@ const ApiRoutes = {
 
 
   Image : {
-    path: "http://localhost:3000/images"
+    path: "https://booking-app-s8pq.onrender.com/images"
     
   },
 
