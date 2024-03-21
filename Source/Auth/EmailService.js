@@ -64,12 +64,7 @@ const sendWelcomeEmail = async (email, name, phone) => {
 
 // Booking Confirmation Mail
 const bookingConfirmation = async (
-  email,
-  name,
-  date,
-  movieName,
-  seatNumber,
-  screen
+  email, name, movieName,  date,time,theater, totalPrice, seatNumber,screen
 ) => {
   try {
     let html = `<div>
@@ -91,6 +86,18 @@ const bookingConfirmation = async (
                 <tr>
                     <td>Screen : </td>
                     <td>${screen}</td>
+                </tr>
+                <tr>
+                    <td>Time : </td>
+                    <td>${time}</td>
+                </tr>
+                <tr>
+                    <td>Theater : </td>
+                    <td>${theater}</td>
+                </tr>
+                <tr>
+                    <td>Total Price : </td>
+                    <td>${totalPrice}</td>
                 </tr>
                 <tr>
                     <td>Seat No : </td>

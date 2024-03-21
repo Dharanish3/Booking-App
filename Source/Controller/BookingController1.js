@@ -1,6 +1,6 @@
 import BookModel from "../Models/booking.js";
 import UserModel from "../Models/user.js";
-import MovieModel from "../Models/movie.js";
+import MovieModel from "../Models/user.js";
 import ShowModel from "../Models/show.js";
 import mongoose from "mongoose";
 import Authnticate from "../Auth/Authnticate.js";
@@ -10,9 +10,8 @@ import fs from "fs";
 // Create Book
 const newBooking = async (req, res, next) => {
   const {
+    showId,
     movieId,
-    theater,
-    time,
     status,
     numTickets,
     totalPrice,
@@ -30,6 +29,7 @@ const newBooking = async (req, res, next) => {
 
   let existingMovie;
   let existingUser;
+  let existingShow;
 
   try {
     // Validate if movie ID is provided
@@ -40,10 +40,10 @@ const newBooking = async (req, res, next) => {
     existingMovie = await MovieModel.findById(movieId);
 
     // Validate if movie with given ID exists
-
     if (!existingMovie) {
       return res.status(404).send({ message: "Movie Not Found With Given ID" });
     }
+
     existingUser = await UserModel.findById(user);
 
     // Validate if user with given ID exists
@@ -51,11 +51,17 @@ const newBooking = async (req, res, next) => {
       return res.status(404).json({ message: "User not found with given ID" });
     }
 
+    existingShow = await ShowModel.findById(showId);
+
+    // Validate if user with given ID exists
+    if (!existingShow) {
+      return res.status(404).send({ message: "User not found with given ID" });
+    }
+
     // Create a new booking
     const booking = new BookModel({
       movieId,
-      theater,
-      time,
+      showId,
       status,
       numTickets,
       totalPrice,
@@ -66,24 +72,20 @@ const newBooking = async (req, res, next) => {
       user,
     });
 
-    await booking.save();
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
+    existingMovie.bookings.push(booking);
     existingUser.bookings.push(booking);
-    await existingUser.save();
+    existingShow.bookings.push(booking);
 
-    const { email, name } = existingUser;
-    const { movieName } = existingMovie;
+    await existingUser.save({ session });
+    await existingMovie.save({ session });
+    await existingShow.save({ session });
 
-    await Emailservice.bookingConfirmation(
-      email,
-      name,
-      movieName,
-      date,
-      time,
-      theater,
-      totalPrice,
-      seatNumber,
-      screen
-    );
+    await booking.save({ session });
+    session.commitTransaction();
+    // Save the booking to the database
 
     return res.status(201).send({ message: "Booked Successfully" });
   } catch (err) {

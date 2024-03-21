@@ -56,7 +56,7 @@ const createMovie = async (req, res) => {
 //  get Movie by Id
 const getMovieById = async (req, res) => {
   try {
-    const movie = await MovieModel.findOne({ _id: req.params._id });
+    const movie = await MovieModel.findOne({ _id: req.params._id }).populate("shows");
     if (movie) {
       res.status(200).send({
         message: "Movie Find Successfully",

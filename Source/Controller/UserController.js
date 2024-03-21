@@ -17,6 +17,33 @@ const getUser = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  try {
+    const user = await UserModel.findOne(
+      { _id: req.params._id },
+      { password: 0 }
+    ).populate({
+      path: "bookings",
+      populate: {
+        path: "movieId", 
+        model: "movie",
+      },
+    });
+
+    if (user) {
+      res.status(200).send({
+        message: "User find Successfully",
+        user,
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: "Internal Server Error",
+      Sucess: false,
+    });
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     const { email, name, phone } = req.body;
@@ -53,14 +80,15 @@ const login = async (req, res) => {
           name: user.name,
           email: user.email,
           role: user.role,
-          _id: user._id
+          _id: user._id,
         });
         res.status(200).send({
           message: "Login Successful",
           token,
+          name: user.name,
           role: user.role,
           email: user.email,
-          _id : user._id
+          _id: user._id,
         });
       } else {
         res.status(500).send({
@@ -84,4 +112,5 @@ export default {
   getUser,
   createUser,
   login,
+  getUserById,
 };
