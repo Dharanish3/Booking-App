@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
 import { Link, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import { useLogout } from "./useLogout";
 
@@ -13,8 +14,16 @@ function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const logout = useLogout();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const isLoggedIn = sessionStorage.getItem('token') && sessionStorage.getItem('role')  ;
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const userName = sessionStorage.getItem("name");
+
+  const isLoggedIn =
+    sessionStorage.getItem("token") && sessionStorage.getItem("role");
   return (
     <>
       <Navbar expand="lg" className="bg-body-dark  custom-navbar ">
@@ -47,12 +56,18 @@ function Header() {
             </Nav>
           </Navbar.Collapse>
           {isLoggedIn ? (
-            <Button variant="danger" onClick={() => logout()}>
-              Logout
-            </Button>
+            
+            <NavDropdown title={`Hi,  ${userName}`}  id="nav-dropdown">
+              
+              <NavDropdown.Item eventKey="4.1" onClick={()=> navigate('/user-profile')}>My Profile</NavDropdown.Item>
+              <NavDropdown.Item eventKey="4.2" onClick={()=> navigate('/yourbooking')}>Your Bookings</NavDropdown.Item>
+              
+              <NavDropdown.Divider />
+              <NavDropdown.Item eventKey="4.4" onClick={()=> logout()}>Log Out</NavDropdown.Item>
+            </NavDropdown>
           ) : (
             <Button variant="danger" onClick={() => navigate("/login")}>
-              Signup / Login
+              Login
             </Button>
           )}
         </Container>

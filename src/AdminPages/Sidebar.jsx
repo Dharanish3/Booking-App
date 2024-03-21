@@ -54,6 +54,68 @@ function Sidebar({ children }) {
                     </Link>
                   </nav>
                 </div>
+                <Link
+                  className="nav-link collapsed"
+                 to="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts1"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts1"
+                >
+                  <div className="sb-nav-link-icon">
+                    <i className="fas fa-video-camera"></i>
+                  </div>
+                  Theater
+                  <div className="sb-sidenav-collapse-arrow">
+                    <i className="fas fa-angle-down"></i>
+                  </div>
+                </Link>
+                <div
+                  className="collapse"
+                  id="collapseLayouts1"
+                  aria-labelledby="headingTheater"
+                  data-bs-parent="#sidenavAccordion"
+                >
+                  <nav className="sb-sidenav-menu-nested nav">
+                    <Link className="nav-link" to="/admin/theater">
+                      Theater
+                    </Link>
+                    <Link className="nav-link" to="/admin/theater-add">
+                     Add Theater
+                    </Link>
+                  </nav>
+                </div>
+                <Link
+                  className="nav-link collapsed"
+                 to="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts2"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts2"
+                >
+                  <div className="sb-nav-link-icon">
+                    <i className="fas fa-video-camera"></i>
+                  </div>
+                  Shows
+                  <div className="sb-sidenav-collapse-arrow">
+                    <i className="fas fa-angle-down"></i>
+                  </div>
+                </Link>
+                <div
+                  className="collapse"
+                  id="collapseLayouts2"
+                  aria-labelledby="headingTheater"
+                  data-bs-parent="#sidenavAccordion"
+                >
+                  <nav className="sb-sidenav-menu-nested nav">
+                    <Link className="nav-link" to="/admin/show-list">
+                      Show List
+                    </Link>
+                    <Link className="nav-link" to="/admin/show-add">
+                     Add Show
+                    </Link>
+                  </nav>
+                </div>
                 <a
                   className="nav-link collapsed"
                   href="#"

@@ -27,6 +27,7 @@ function Login() {
         sessionStorage.setItem("role", res.data.role);
         sessionStorage.setItem("userId", res.data._id);
         sessionStorage.setItem("email", res.data.email);
+        sessionStorage.setItem("name", res.data.name);
         navigate("/");
       } else {
         toast.error(error.response.data.message || error.message);

@@ -1,12 +1,14 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./Movie.css";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import ApiRoutes from "../Routes/AxiosRoutes";
 import ReactPlayer from "react-player";
 import { BsFilePlay } from "react-icons/bs";
+import { BookContext } from "../Utils/BookingContextComponent";
 
 function MovieDetailCard({ movie }) {
+
   return (
     <>
       <header

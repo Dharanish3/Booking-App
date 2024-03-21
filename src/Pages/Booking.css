@@ -1,0 +1,87 @@
+.flex-container {
+    display: flex;
+    justify-content: space-between; /* Adjust this property according to your layout preference */
+  }
+  
+.screen-selection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen-selection .sreen{
+    margin: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0,0.2);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+
+.screen-seats{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+/* Booking.css */
+.seat {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc; /* Default color for available seats */
+    margin: 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .seat.selected {
+    background-color: green;
+  }
+  
+  .seat.occupied {
+    background-color: #fff;
+  }
+  
+  .seat:nth-of-type(2) {
+    margin-right: 18px;
+  }
+  
+  .seat:nth-last-of-type(2) {
+    margin-left: 18px;
+  }
+  
+  .seat:not(.occupied):hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+  
+  .showcase .seat:not(.occupied):hover {
+    cursor: default;
+    transform: scale(1);
+  }
+  
+  .showcase {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 40px;
+    color: #777;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .showcase li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+  }
+  
+  .showcase li small {
+    margin-left: 10px;
+  }
+  

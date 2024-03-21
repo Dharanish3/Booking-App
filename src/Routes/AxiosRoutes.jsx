@@ -10,8 +10,8 @@ const ApiRoutes = {
   },
 
   GET_USER: {
-    path: "/user/home",
-    authenticate: false,
+    path: "/user/profile",
+    authenticate: true,
   },
 
   MOVIE_CREATE: {
@@ -50,12 +50,12 @@ const ApiRoutes = {
   // Admin
   ADMIN_SIGN_IN: {
     path: "/admin/login",
-    authenticate: false,
+    authenticate: true,
   },
 
 
   Image : {
-    path: "https://booking-app-s8pq.onrender.com/images"
+    path: "http://localhost:3000/images"
     
   },
 

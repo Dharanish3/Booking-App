@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const AxiosService = axios.create({
-  baseURL: "https://booking-app-s8pq.onrender.com",
+  baseURL: "http://localhost:3000",
 
   headers: { "content-type": "application/json" },
 });
